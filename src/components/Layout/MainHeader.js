@@ -87,6 +87,15 @@ const MainHeader = () => {
               </NavLink>
             </li>
           )}
+           <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? classes.active : "")}
+                to="/changeName"
+                onClick={closeDropdownHandler}
+              >
+                 שנה שם
+              </NavLink>
+            </li>
         </ul>
       </nav>
       {openRequestsOptions && <DropList closeDropDown={closeDropdownHandler} />}
