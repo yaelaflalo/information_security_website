@@ -1,82 +1,110 @@
 import MainHeader from "../Layout/MainHeader";
 import classes from "./ManagePage.module.css";
 
-import { getAllRequests } from "../../Services/requests";
+import { getAllRequests, setRequestToUnapprove } from "../../Services/requests";
 import { useEffect, useState } from "react";
 import UnapproveDialog from "./UnapproveDialog";
-import { setRequestToUnapprove } from "../../Services/requests";
 import BottomNavigation from "../Requests/BottomNavigation";
 import FilterButtons from "./FilterButtons";
 import RequestsList from "./RequestsList";
 import WelcomeBanner from "../Layout/WelcomeBanner";
 
 const ManagePage = () => {
-  const [usersRequests, setUsersRequests] = useState([]);
-  const [skip, setSkip] = useState(0);
+  const [state, setState] = useState({
+    usersRequests: [],
+    skip: 0,
+    refreshRequests: false,
+    rejectedRequestId: "",
+    typeOfStatus: "ממתין לאישור...",
+    selectedSortByDate: "createdAt:desc",
+  });
+
   const limit = 5;
-  const [refreshRequests, setRefreshRequests] = useState(false);
-  const [rejectedRequestId, setRejectedRequestId] = useState("");
-  const [typeOfStatus, setTypeOfStatus] = useState("ממתין לאישור...");
-  const [selectedSortByDate, setSelectedSortByDate] =
-    useState("createdAt:desc");
-
-  const nextButtonHandler = () => {
-    setSkip((prevSkip) => prevSkip + limit);
-  };
-
-  const backButtonHandler = () => {
-    setSkip((prevSkip) => Math.max(prevSkip - limit, 0));
-  };
 
   const handleRefresh = () => {
-    setRefreshRequests(!refreshRequests);
+    setState((prevState) => ({
+      ...prevState,
+      refreshRequests: !prevState.refreshRequests,
+    }));
   };
 
   const handleRejectRequest = (requestId) => {
-    setRejectedRequestId(requestId);
+    setState((prevState) => ({
+      ...prevState,
+      rejectedRequestId: requestId,
+    }));
   };
 
   const handleDateChange = (selectedOption) => {
-    setSelectedSortByDate(selectedOption.value);
+    setState((prevState) => ({
+      ...prevState,
+      selectedSortByDate: selectedOption.value,
+    }));
   };
 
   const changeToHistory = () => {
-    setTypeOfStatus("");
+    setState((prevState) => ({
+      ...prevState,
+      typeOfStatus: "הבקשה אושרה,הבקשה נדחתה",
+    }));
   };
 
   const changeToWaitingList = () => {
-    setTypeOfStatus("ממתין לאישור...");
+    setState((prevState) => ({
+      ...prevState,
+      typeOfStatus: "ממתין לאישור...",
+    }));
   };
 
   const closeUnapproveDialog = async (unapproveReasonValue) => {
     try {
-      await setRequestToUnapprove(rejectedRequestId, {
-        unapproved_reason: `${unapproveReasonValue}`,
+      await setRequestToUnapprove(state.rejectedRequestId, {
+        unapproved_reason: unapproveReasonValue,
       });
+      setState((prevState) => ({
+        ...prevState,
+        rejectedRequestId: "",
+      }));
+      handleRefresh();
     } catch (error) {
       console.log(error.message);
-      return;
     }
-    setRejectedRequestId("");
-    handleRefresh();
+  };
+
+  const handlePagination = (direction) => {
+    setState((prevState) => ({
+      ...prevState,
+      skip:
+        direction === "next"
+          ? prevState.skip + limit
+          : Math.max(prevState.skip - limit, 0),
+    }));
   };
 
   useEffect(() => {
     const fetchRequests = async () => {
       try {
         const data = await getAllRequests(
-          typeOfStatus,
-          selectedSortByDate,
+          state.typeOfStatus,
+          state.selectedSortByDate,
           limit,
-          skip
+          state.skip
         );
-        setUsersRequests(data);
+        setState((prevState) => ({
+          ...prevState,
+          usersRequests: data,
+        }));
       } catch (error) {
         console.log("fetch failed");
       }
     };
     fetchRequests();
-  }, [skip, refreshRequests, typeOfStatus, selectedSortByDate]);
+  }, [
+    state.skip,
+    state.refreshRequests,
+    state.typeOfStatus,
+    state.selectedSortByDate,
+  ]);
 
   return (
     <div>
@@ -84,13 +112,16 @@ const ManagePage = () => {
       <WelcomeBanner />
       <div className={classes.center}>
         <RequestsList
-          requests={usersRequests}
+          requests={state.usersRequests}
           onRefresh={handleRefresh}
           onReject={handleRejectRequest}
         />
       </div>
-      <BottomNavigation onNext={nextButtonHandler} onBack={backButtonHandler} />
-      {rejectedRequestId !== "" && (
+      <BottomNavigation
+        onNext={() => handlePagination("next")}
+        onBack={() => handlePagination("back")}
+      />
+      {state.rejectedRequestId !== "" && (
         <UnapproveDialog onSubmit={closeUnapproveDialog} />
       )}
       <FilterButtons

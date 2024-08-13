@@ -8,43 +8,60 @@ import BottomNavigation from "../Requests/BottomNavigation";
 import WelcomeBanner from "../Layout/WelcomeBanner";
 
 const PrivatePage = () => {
-  const [userRequests, setUserRequests] = useState([]);
-  const [skip, setSkip] = useState(0);
+  const [filterState, setFilterState] = useState({
+    selectedStatus: "",
+    selectedType: "",
+    selectedSortByDate: "createdAt:desc",
+    skip: 0,
+  });
+
   const limit = 5;
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const [selectedType, setSelectedType] = useState("");
-  const [selectedSortByDate, setSelectedSortByDate] =
-    useState("createdAt:desc");
+  const [userRequests, setUserRequests] = useState([]);
 
   const handleStatusChange = (selectedOption) => {
-    setSelectedStatus(selectedOption.value);
+    setFilterState((prevState) => ({
+      ...prevState,
+      selectedStatus: selectedOption.value,
+    }));
   };
 
   const handleTypeChange = (selectedOption) => {
-    setSelectedType(selectedOption.value);
+    setFilterState((prevState) => ({
+      ...prevState,
+      selectedType: selectedOption.value,
+    }));
   };
 
   const handleDateChange = (selectedOption) => {
-    setSelectedSortByDate(selectedOption.value);
+    setFilterState((prevState) => ({
+      ...prevState,
+      selectedSortByDate: selectedOption.value,
+    }));
   };
 
   const nextButtonHandler = () => {
-    setSkip((prevSkip) => prevSkip + limit);
+    setFilterState((prevState) => ({
+      ...prevState,
+      skip: prevState.skip + limit,
+    }));
   };
 
   const backButtonHandler = () => {
-    setSkip((prevSkip) => Math.max(prevSkip - limit, 0));
+    setFilterState((prevState) => ({
+      ...prevState,
+      skip: Math.max(prevState.skip - limit, 0),
+    }));
   };
 
   useEffect(() => {
     const fetchRequests = async () => {
       try {
         const data = await getMyOwnRequests(
-          selectedStatus,
-          selectedType,
-          selectedSortByDate,
+          filterState.selectedStatus,
+          filterState.selectedType,
+          filterState.selectedSortByDate,
           limit,
-          skip
+          filterState.skip
         );
         setUserRequests(data);
       } catch (error) {
@@ -52,7 +69,12 @@ const PrivatePage = () => {
       }
     };
     fetchRequests();
-  }, [skip, selectedStatus, selectedType, selectedSortByDate]);
+  }, [
+    filterState.skip,
+    filterState.selectedStatus,
+    filterState.selectedType,
+    filterState.selectedSortByDate,
+  ]);
 
   return (
     <div>
