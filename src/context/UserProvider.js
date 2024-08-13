@@ -12,14 +12,14 @@ const UserProvider = ({ children }) => {
     setRole(userRole);
   };
 
-  const logoutHandler = () => {
+  const logoutHandlerContext = () => {
     setUserName('');
     setIsAuthenticated(false);
     setRole('guest');
   };
 
   return (
-    <UserContext.Provider value={{ userName, isAuthenticated, role, loginHandler, logoutHandler }}>
+    <UserContext.Provider value={{ userName, isAuthenticated, role, loginHandler, logoutHandlerContext }}>
       {children}
     </UserContext.Provider>
   );
