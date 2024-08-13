@@ -1,12 +1,12 @@
 import MainHeader from "../Layout/MainHeader";
 import RequestFilterBar from "../Requests/RequestFilterBar";
-import RequestItem from "../Requests/RequestItem/RequestItem";
 import classes from "./PrivatePage.module.css";
+import UserRequestsList from "../Requests/UserRequestsList";
 
 import { getMyOwnRequests } from "../../Services/requests";
-import { useContext, useEffect, useState } from "react";
-import UserContext from "../../context/user-context";
+import { useEffect, useState } from "react";
 import BottomNavigation from "../Requests/BottomNavigation";
+import WelcomeBanner from "../Layout/WelcomeBanner";
 
 const PrivatePage = () => {
   const [userRequests, setUserRequests] = useState([]);
@@ -16,7 +16,6 @@ const PrivatePage = () => {
   const [selectedType, setSelectedType] = useState("");
   const [selectedSortByDate, setSelectedSortByDate] =
     useState("createdAt:desc");
-  const { userName } = useContext(UserContext);
 
   const handleStatusChange = (selectedOption) => {
     setSelectedStatus(selectedOption.value);
@@ -56,31 +55,16 @@ const PrivatePage = () => {
     fetchRequests();
   }, [skip, selectedStatus, selectedType, selectedSortByDate]);
 
-  const userRequestList = userRequests.map((request, index) => (
-    <RequestItem
-      key={index}
-      requestType={request.request_type}
-      requestStatus={request.status}
-      requestDate={`${new Date(request.createdAt).getDate()}/${
-        new Date(request.createdAt).getMonth() + 1
-      }/${new Date(request.createdAt).getFullYear()}`}
-      requestReason={request.request_reason}
-      unapprovedReason={request.unapproved_reason}
-    />
-  ));
-
   return (
     <div>
       <MainHeader />
-      <div className={classes["welcome-sign"]}>ברוך שובך {userName}!</div>
+      <WelcomeBanner />
       <RequestFilterBar
         onStatusChange={handleStatusChange}
         onTypeChange={handleTypeChange}
         onDateChange={handleDateChange}
       />
-      <div className={classes.center}>
-        <ul>{userRequestList}</ul>
-      </div>
+      <UserRequestsList requests={userRequests} />
       <BottomNavigation onNext={nextButtonHandler} onBack={backButtonHandler} />
     </div>
   );
