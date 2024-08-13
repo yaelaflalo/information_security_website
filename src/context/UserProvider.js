@@ -21,6 +21,10 @@ const UserProvider = ({ children }) => {
     setRole("guest");
   };
 
+  const nameHandler = (name) => {
+    setUserName(name);
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -30,6 +34,7 @@ const UserProvider = ({ children }) => {
         role,
         loginHandler,
         logoutHandlerContext,
+        nameHandler
       }}
     >
       {children}
