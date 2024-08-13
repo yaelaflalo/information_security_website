@@ -1,20 +1,29 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import MainHeader from "../Layout/MainHeader";
 import classes from "./ChangeName.module.css";
 import Card from "../UI/Card";
 
+import UserContext from "../../context/user-context";
+import { changeName } from "../../Services/auth";
+
 const ChangeName = () => {
-    const [isNameChanged, setIsNameChanged]= useState(null);
-    const [nameValue, setNameValue] = useState('');
+  const [responseValue, setResponseValue] = useState("");
+  const [nameValue, setNameValue] = useState("");
+  const { email, nameHandler } = useContext(UserContext);
 
-    const nameChangedHandler = (event) => {
-        setNameValue(event.target.value);
+  const nameChangedHandler = (event) => {
+    setNameValue(event.target.value);
+  };
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    const response = await changeName(email, nameValue);
+    setResponseValue(response);
+    if (response === "שם המשתמש שונה בהצלחה") {
+      nameHandler(nameValue);
+      setNameValue("");
     }
-
-    const submitHandler = async (event) => {
-        event.preventDefault();
-        setIsNameChanged(true);
-      };
+  };
 
   return (
     <div>
@@ -36,12 +45,7 @@ const ChangeName = () => {
             <button className={classes.button}>לחצו לשנות את השם</button>
           </form>
         </Card>
-        {isNameChanged === true && (
-          <div className={classes["success-text"]}>השם שונה בהצלחה!</div>
-        )}
-        {isNameChanged === false && (
-          <div className={classes["unsuccess-text"]}>קליטת השם נכשלה!</div>
-        )}
+        <div className={classes["success-text"]}>{responseValue}</div>
       </div>
     </div>
   );
