@@ -67,7 +67,7 @@ const Signup = () => {
 
     try {
       const response = await signup(nameValue, emailValue, passwordValue);
-      loginHandler(response.user.name, response.user.role);
+      loginHandler(response.user.name, response.user.role, response.user.email);
       navigate("/me");
     } catch (error) {
       console.log(error);

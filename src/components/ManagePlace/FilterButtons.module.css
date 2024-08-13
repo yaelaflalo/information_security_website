@@ -2,10 +2,11 @@
   display: flex;
   position: absolute;
   font-size: 3vh;
-  width: 45vw;
+  width: 75vw;
   top: 24vh;
   left: 50%;
   transform: translateX(-50%);
+  align-items: center;
 }
 
 .button {
@@ -13,8 +14,17 @@
   background-color: #0046a7;
 }
 
+.button:hover {
+  background-color: #0046a7d0;
+}
+
 .filtering-date-selector {
   width: 15vw;
   direction: rtl;
   font-size: 2vh;
 }
+
+.picker{
+  width: 7vw;
+}
+

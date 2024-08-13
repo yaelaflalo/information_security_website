@@ -1,5 +1,4 @@
 import "./App.css";
-// import MainHeader from "./components/Layout/MainHeader";
 import { Route, Routes } from "react-router-dom";
 import RequestForm from "./components/Requests/RequestForm";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
@@ -8,6 +7,7 @@ import ManagePage from "./components/ManagePlace/ManagePage";
 import UserProvider from "./context/UserProvider";
 import UnauthorizedPage from "./components/ProtectedRoute/UnauthorizedPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ChangeName from "./components/ChangeName/ChangeName";
 
 function App() {
   return (
@@ -35,6 +35,15 @@ function App() {
           element={
             <ProtectedRoute
               element={<RequestForm />}
+              allowedRoles={["user", "admin"]}
+            />
+          }
+        />
+        <Route
+          path="/changeName"
+          element={
+            <ProtectedRoute
+              element={<ChangeName />}
               allowedRoles={["user", "admin"]}
             />
           }

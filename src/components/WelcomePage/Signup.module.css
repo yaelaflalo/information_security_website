@@ -24,11 +24,15 @@ button {
   margin: 0.9vh;
   border-radius: 5px;
   border-style: none;
-  background-color: rgb(0, 0, 215);
+  background-color: #0046a7;
   font-size: 3vh;
   color: white;
   font-weight: bold;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #0046a7d0;
 }
 
 .title {

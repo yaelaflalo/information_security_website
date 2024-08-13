@@ -30,9 +30,10 @@ const RequestFilterBar = ({ onStatusChange, onTypeChange, onDateChange }) => {
   const [selectedFilteringRequestsType, setSelectedFilteringRequestsType] =
     useState({ value: "allRequestsTaypes", label: "כל סוגי הבקשות" });
 
-    const [selectedFilteringDate, setSelectedFilteringDate] =
-    useState({value: "desc", label: "מהחדש לישן" });
-
+  const [selectedFilteringDate, setSelectedFilteringDate] = useState({
+    value: "desc",
+    label: "מהחדש לישן",
+  });
 
   const handleStatusChange = (selectedOption) => {
     setSelectedFilteringStatus(selectedOption);
@@ -47,7 +48,7 @@ const RequestFilterBar = ({ onStatusChange, onTypeChange, onDateChange }) => {
   const handleDateChange = (selectedOption) => {
     setSelectedFilteringDate(selectedOption);
     onDateChange(selectedOption);
-  }
+  };
 
   return (
     <div className={classes.container}>

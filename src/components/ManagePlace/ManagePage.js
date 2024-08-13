@@ -17,6 +17,8 @@ const ManagePage = () => {
     rejectedRequestId: "",
     typeOfStatus: "ממתין לאישור...",
     selectedSortByDate: "createdAt:desc",
+    startDate: new Date("2022-12-31"),
+    endDate: new Date(),
   });
 
   const limit = 5;
@@ -39,6 +41,14 @@ const ManagePage = () => {
     setState((prevState) => ({
       ...prevState,
       selectedSortByDate: selectedOption.value,
+    }));
+  };
+
+  const handleDateRangeChange = (startDate, endDate) => {
+    setState((prevState) => ({
+      ...prevState,
+      startDate: startDate,
+      endDate: endDate,
     }));
   };
 
@@ -88,7 +98,9 @@ const ManagePage = () => {
           state.typeOfStatus,
           state.selectedSortByDate,
           limit,
-          state.skip
+          state.skip,
+          state.startDate.toISOString().split("T")[0],
+          state.endDate.toISOString().split("T")[0]
         );
         setState((prevState) => ({
           ...prevState,
@@ -104,6 +116,8 @@ const ManagePage = () => {
     state.refreshRequests,
     state.typeOfStatus,
     state.selectedSortByDate,
+    state.startDate,
+    state.endDate,
   ]);
 
   return (
@@ -128,6 +142,9 @@ const ManagePage = () => {
         onHistoryClick={changeToHistory}
         onWaitingListClick={changeToWaitingList}
         onDateChange={handleDateChange}
+        onDateRangeChange={handleDateRangeChange}
+        startDate={state.startDate}
+        endDate={state.endDate}
       />
     </div>
   );

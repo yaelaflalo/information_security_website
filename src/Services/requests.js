@@ -13,12 +13,21 @@ export const getMyOwnRequests = async (status, type, sortBy, limit, skip) => {
   return response.data;
 };
 
-export const getAllRequests = async (status, sortBy, limit, skip) => {
+export const getAllRequests = async (
+  status,
+  sortBy,
+  limit,
+  skip,
+  startDate,
+  endDate
+) => {
   const params = new URLSearchParams();
   if (status) params.append("status", status);
   if (sortBy) params.append("sortBy", sortBy);
   if (limit) params.append("limit", limit);
   if (skip) params.append("skip", skip);
+  if (startDate) params.append("startDate", startDate);
+  if (endDate) params.append("endDate", endDate);
 
   const response = await httpCommon.get(`admin/requests?${params.toString()}`);
 
