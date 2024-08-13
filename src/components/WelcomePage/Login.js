@@ -46,7 +46,7 @@ const Login = () => {
 
     try {
       const response = await login(emailValue, passwordValue);
-      loginHandler(response.user.name, response.user.role, response.user.email);
+      loginHandler(response.user.name, response.user.email, response.user.role);
       navigate("/me");
     } catch (error) {
       setIsLoginFailed(true);
