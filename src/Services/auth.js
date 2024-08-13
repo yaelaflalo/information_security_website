@@ -4,18 +4,24 @@ export const login = async (email, password) => {
   const response = await httpCommon.post("/login", { email, password });
   const token = response.data.token;
 
+  localStorage.setItem('authToken', token);
+
   httpCommon.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   return response.data;
 };
 
 export const logout = async () => {
   await httpCommon.post("/users/logout");
+  
+  localStorage.removeItem('authToken');
 
   delete httpCommon.defaults.headers.common["Authorization"];
 };
 
 export const logoutAll = async () => {
   await httpCommon.post("/users/logoutAll");
+
+  localStorage.removeItem('authToken');
 
   delete httpCommon.defaults.headers.common["Authorization"];
 };
@@ -37,6 +43,8 @@ export const signup = async (name, email, password) => {
   const response = await httpCommon.post("/signup", { name, email, password });
   const token = response.data.token;
 
+  localStorage.setItem('authToken', token);
+
   httpCommon.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   return response.data;
 };
@@ -48,5 +56,15 @@ export const changeName = async (email, name) => {
   } catch (error) {
     console.log(error);
     return "לא ניתן לשנות שם בשל תקלת מערכת";
+  }
+};
+
+
+export const getMe = async () => {
+  try {
+    const response = await httpCommon.get("/me");
+    return response.data; 
+  } catch (error) {
+    console.error("Failed to fetch user info:", error);
   }
 };
