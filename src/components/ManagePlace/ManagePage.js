@@ -2,13 +2,13 @@ import MainHeader from "../Layout/MainHeader";
 import classes from "./ManagePage.module.css";
 
 import { getAllRequests } from "../../Services/requests";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import UnapproveDialog from "./UnapproveDialog";
 import { setRequestToUnapprove } from "../../Services/requests";
-import UserContext from "../../context/user-context";
 import BottomNavigation from "../Requests/BottomNavigation";
 import FilterButtons from "./FilterButtons";
 import RequestsList from "./RequestsList";
+import WelcomeBanner from "../Layout/WelcomeBanner";
 
 const ManagePage = () => {
   const [usersRequests, setUsersRequests] = useState([]);
@@ -17,7 +17,6 @@ const ManagePage = () => {
   const [refreshRequests, setRefreshRequests] = useState(false);
   const [rejectedRequestId, setRejectedRequestId] = useState("");
   const [typeOfStatus, setTypeOfStatus] = useState("ממתין לאישור...");
-  const { userName } = useContext(UserContext);
   const [selectedSortByDate, setSelectedSortByDate] =
     useState("createdAt:desc");
 
@@ -82,7 +81,7 @@ const ManagePage = () => {
   return (
     <div>
       <MainHeader />
-      <div className={classes["welcome-sign"]}>ברוך שובך {userName}!</div>
+      <WelcomeBanner />
       <div className={classes.center}>
         <RequestsList
           requests={usersRequests}
