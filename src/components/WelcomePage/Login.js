@@ -6,12 +6,14 @@ import useInput from "../../hooks/use-input";
 import { login } from "../../Services/auth";
 import { useState, useContext } from "react";
 import UserContext from "../../context/user-context";
+import ShowPasswordEye from "./ShowPasswordEye";
 
 const isEmail = (value) => value.includes("@");
 const isLongerThenFour = (value) => value.length > 4;
 
 const Login = () => {
   const { loginHandler } = useContext(UserContext);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const {
     value: emailValue,
@@ -55,6 +57,10 @@ const Login = () => {
     resetEmailInput();
   };
 
+  const changePasswordToVisibility = () => {
+    setIsPasswordVisible((prevState) => !prevState);
+  };
+
   const emailClasses = emailInputHasError ? "invalid" : "";
   const passwordClasses = passwordHasError ? "invalid" : "";
 
@@ -82,10 +88,14 @@ const Login = () => {
             className={classes[passwordClasses]}
             id="password"
             placeholder="סיסמא"
-            type="password"
+            type={isPasswordVisible ? "text" : "password"}
             value={passwordValue}
             onChange={passwordChangedHandler}
             onBlur={passwordBlurHandler}
+          />
+          <ShowPasswordEye
+            isPasswordVisible={isPasswordVisible}
+            onClick={changePasswordToVisibility}
           />
           {passwordHasError && (
             <p className={classes["error-text"]}>
