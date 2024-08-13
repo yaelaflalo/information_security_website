@@ -10,7 +10,7 @@ import UserContext from "../../context/user-context";
 
 const MainHeader = () => {
   const [openRequestsOptions, setOpenRequestsOptions] = useState(false);
-  const { role } = useContext(UserContext);
+  const { role, logoutHandlerContext } = useContext(UserContext);
 
   const openDropdownHandler = () => {
     setOpenRequestsOptions(!openRequestsOptions);
@@ -25,6 +25,7 @@ const MainHeader = () => {
   const logoutHandler = async () => {
     try {
       await logout();
+      logoutHandlerContext();
     } catch {
       console.error("Enable to logout");
     }
@@ -33,6 +34,7 @@ const MainHeader = () => {
   const logoutallHandler = async () => {
     try {
       await logoutAll();
+      logoutHandlerContext();
     } catch {
       console.error("Enable to logout all");
     }
