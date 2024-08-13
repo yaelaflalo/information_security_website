@@ -40,3 +40,13 @@ export const signup = async (name, email, password) => {
   httpCommon.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   return response.data;
 };
+
+export const changeName = async (email, name) => {
+  try {
+    await httpCommon.patch("/changeName", { email, name });
+    return "שם המשתמש שונה בהצלחה";
+  } catch (error) {
+    console.log(error);
+    return "לא ניתן לשנות שם בשל תקלת מערכת";
+  }
+};
