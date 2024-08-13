@@ -1,4 +1,3 @@
-
 li {
   list-style: none;
   padding: 0;
@@ -22,7 +21,7 @@ li {
 
 .data {
   position: relative;
-  
+  text-align: start;
 }
 
 .date {
@@ -51,6 +50,5 @@ li {
   font-weight: bold;
 }
 
-.buttons{
-  
+.buttons {
 }

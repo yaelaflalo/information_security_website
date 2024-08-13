@@ -1,9 +1,20 @@
-.filter-buttons{
-    display: flex;
-    position: absolute;
-    font-size: 3vh;
-    width: 45vw;
-    top: 25vh;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+.filter-buttons {
+  display: flex;
+  position: absolute;
+  font-size: 3vh;
+  width: 45vw;
+  top: 24vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.button {
+  width: 19vw;
+  background-color: #0046a7;
+}
+
+.filtering-date-selector {
+  width: 15vw;
+  direction: rtl;
+  font-size: 2vh;
+}

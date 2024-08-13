@@ -1,6 +1,5 @@
 import MainHeader from "../Layout/MainHeader";
 import RequestFilterBar from "../Requests/RequestFilterBar";
-import classes from "./PrivatePage.module.css";
 import UserRequestsList from "../Requests/UserRequestsList";
 
 import { getMyOwnRequests } from "../../Services/requests";
