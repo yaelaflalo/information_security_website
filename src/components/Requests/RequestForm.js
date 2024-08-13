@@ -17,20 +17,21 @@ const RequestForm = () => {
   const params = useParams();
 
   const requestType = params.requestName;
-  //do i need to do it in this way or i can use hebrow in the url?
 
-  //   const requestTypes = {
-  //     "hashra": "שם הבקשה בעברית"
-  //   };
+  const requestTypes = {
+    type1: "בקשת השחרה",
+    type2: "בקשת אישור כניסה רגלי או רכוב לבהד",
+    type3: "בקשת קידוד חוגר",
+    type4: "בקשת טופס חתימה על שוס",
+  };
 
   const submitHandler = async (event) => {
     event.preventDefault();
 
     try {
-      //check other way. why it doest purse to json
       await addRequest({
-        request_type: `${requestType}`,
-        request_reason: `${requestReasonValue}`,
+        request_type: requestTypes[requestType],
+        request_reason: requestReasonValue,
       });
     } catch (error) {
       console.log(error);
@@ -44,7 +45,7 @@ const RequestForm = () => {
   return (
     <div>
       <MainHeader />
-      <div className={classes.title}>{requestType}</div>
+      <div className={classes.title}>{requestTypes[requestType]}</div>
       <div className={classes["form-container"]}>
         <Card>
           <form onSubmit={submitHandler}>
