@@ -2,9 +2,7 @@ import RequestItem from "../Requests/RequestItem/RequestItem";
 import ApproveButtons from "./ApproveButtons";
 import classes from "./AvailableRequests.module.css";
 
-import {
-  setRequestToApprove,
-} from "../../Services/requests";
+import { setRequestToApprove } from "../../Services/requests";
 
 const AvailableRequests = ({
   id,
@@ -13,10 +11,10 @@ const AvailableRequests = ({
   requestDate,
   requestReason,
   unapprovedReason,
+  requestOwnerEmail,
   onRefresh,
-  onReject
+  onReject,
 }) => {
-
   const onApproveHandler = async () => {
     try {
       await setRequestToApprove(id);
@@ -31,26 +29,26 @@ const AvailableRequests = ({
   };
 
   return (
-      <li>
-        <div className={classes.container}>
-          <RequestItem
-            key={id}
-            requestType={requestType}
-            requestStatus={requestStatus}
-            requestDate={requestDate}
-            requestReason={requestReason}
-            unapprovedReason={unapprovedReason}
-          >
-            <ApproveButtons
-              onApproveHandler={onApproveHandler}
-              onRejectHandler={onRejectHandler}
-              onRefresh={onRefresh}
-            />
-          </RequestItem>
-        </div>
-      </li>
+    <li>
+      <div className={classes.container}>
+        <RequestItem
+          key={id}
+          requestType={requestType}
+          requestStatus={requestStatus}
+          requestDate={requestDate}
+          requestReason={requestReason}
+          unapprovedReason={unapprovedReason}
+        >
+          <div className={classes.email}>{requestOwnerEmail}</div>
+          <ApproveButtons
+            onApproveHandler={onApproveHandler}
+            onRejectHandler={onRejectHandler}
+            onRefresh={onRefresh}
+          />
+        </RequestItem>
+      </div>
+    </li>
   );
 };
 
 export default AvailableRequests;
-
