@@ -15,6 +15,7 @@ const RequestsList = ({ requests, onRefresh, onReject }) => {
           }/${new Date(request.createdAt).getFullYear()}`}
           requestReason={request.request_reason}
           unapprovedReason={request.unapproved_reason}
+          requestOwnerEmail={request.owner.email}
           onRefresh={onRefresh}
           onReject={onReject}
         />
