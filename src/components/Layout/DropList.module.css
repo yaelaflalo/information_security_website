@@ -1,0 +1,29 @@
+.dropdown {
+  background-color: #0043a1;
+  font-size: 2.9vh;
+  position: absolute;
+  right: 11vw;
+  width: 18vw;
+  height: 16.5vh;
+  padding: 0.5vh;
+  box-shadow: 0 2px 8px rgb(128, 201, 247);
+  color: white;
+  border-top-style: solid;
+  border-top: rgb(128, 201, 247);
+  top: 12vh;
+  z-index: 3;
+}
+
+
+.dropdown ul {
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown li {
+  padding: 0.6vh;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap; 
+}

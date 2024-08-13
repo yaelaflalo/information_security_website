@@ -1,0 +1,21 @@
+.welcome-sign {
+  font-size: 6vh;
+  font-weight: bold;
+  color: #0043a1b0;
+  position: absolute;
+  top: 16vh;
+  left: 50%;
+  transform: translateX(-50%);
+  direction: rtl;
+}
+
+.center {
+  position: absolute;
+  top: 29vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.button{
+  background-color: #0046a7;
+}

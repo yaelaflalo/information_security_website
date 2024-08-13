@@ -1,0 +1,32 @@
+.filtering-status-selector {
+  width: 14vw;
+  font-size: 2vh;
+  direction: rtl;
+  color: black;
+}
+
+.filtering-type-selector {
+  width: 16vw;
+  font-size: 2vh;
+  direction: rtl;
+  color: black;
+}
+
+.container {
+  position: absolute;
+  width: 60vw;
+  top: 23.4vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #0046a7;
+  color: white;
+  font-size: 3vh;
+  border-radius: 10px;
+  height: 9vh;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  direction: rtl;
+  z-index: 2;
+}

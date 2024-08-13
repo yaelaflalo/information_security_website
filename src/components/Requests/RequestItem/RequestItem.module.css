@@ -1,0 +1,56 @@
+
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0 4vw;
+}
+
+.request-container {
+  position: relative;
+  width: 66vw;
+  font-size: 2.7vh;
+  direction: rtl;
+  margin-top: 1.3vh;
+}
+
+.flex-container {
+  display: flex;
+  height: 11vh;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data {
+  position: relative;
+  
+}
+
+.date {
+  position: relative;
+  text-align: center;
+}
+
+.status {
+  position: relative;
+  text-align: center;
+}
+
+.green {
+  color: #2e7d32;
+}
+
+.red {
+  color: #c62828;
+}
+
+.waiting {
+  color: gray;
+}
+
+.sub-title {
+  font-weight: bold;
+}
+
+.buttons{
+  
+}

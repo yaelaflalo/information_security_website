@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  direction: rtl;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 10vh;
+  font-weight: bold;
+  color: #0043a1;
+}
+
+.subTitle {
+  font-size: 3.5vh;
+}
+
+.bottom-text {
+  margin: 2vh;
+  font-size: 2.5vh;
+  cursor: pointer;
+}
+
+.right-section {
+  display: flex;
+  height: 100vh;
+  width: 40vw;
+  align-self: flex-start;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.left-section {
+  display: flex;
+  height: 100vh;
+  width: 40vw;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.forget-password {
+  font-size: 3vh;
+  font-weight: bold;
+  color: #0043a1b0;
+  position: absolute;
+  top: 64vh;
+  right: 65vw;
+  cursor: pointer;
+}

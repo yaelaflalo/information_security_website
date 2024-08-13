@@ -1,0 +1,59 @@
+.form {
+  width: 28vw;
+  min-height: 46vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5vh;
+}
+
+input {
+  width: 27vw;
+  height: 6vh;
+  margin: 1vh;
+  border-radius: 5px;
+  border-style: none;
+  border-color: rgb(192, 194, 197);
+  background-color: rgb(184, 218, 245);
+  font-size: 3vh;
+}
+
+button {
+  width: 27.3vw;
+  height: 6vh;
+  margin: 0.9vh;
+  border-radius: 5px;
+  border-style: none;
+  background-color: rgb(0, 0, 215);
+  font-size: 3vh;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 3vh;
+  font-weight: bold;
+  color: #0043a1b0;
+   text-align: center;
+}
+
+.invalid {
+  background-color: #c6282898;
+}
+
+.error-text {
+  margin: 0;
+  color: #c62828;
+}
+
+.failed {
+  text-align: center;
+  color: #c62828;
+  font-weight: bold;
+}
+
+input:focus {
+  outline-style: none;
+  box-shadow: none;
+}

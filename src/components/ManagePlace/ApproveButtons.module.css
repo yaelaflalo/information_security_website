@@ -1,0 +1,31 @@
+.approve {
+    background-color: #2e7d3227;
+    border: 2px #2e7d32;
+    color: #2e7d32;
+    border-radius: 16vh;
+    border-style: solid;
+    height: 8vh;
+    width: 6vw;
+}
+
+.reject {
+  background-color: #c628281a;
+  border: 2px #c62828;
+  color: #c62828;
+  border-radius: 16vh;
+  border-style: solid;
+  height: 8vh;
+  width: 6vw;
+}
+
+.reject:hover {
+  background-color: #c6282833;
+}
+
+.approve:hover {
+  background-color: #2e7d3244;
+}
+
+.container {
+  display: flex;
+}

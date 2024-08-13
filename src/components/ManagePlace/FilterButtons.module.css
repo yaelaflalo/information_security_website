@@ -1,0 +1,9 @@
+.filter-buttons{
+    display: flex;
+    position: absolute;
+    font-size: 3vh;
+    width: 45vw;
+    top: 25vh;
+    left: 50%;
+    transform: translateX(-50%);
+  }

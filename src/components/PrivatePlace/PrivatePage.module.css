@@ -1,0 +1,31 @@
+.welcome-sign {
+  font-size: 6vh;
+  font-weight: bold;
+  color: #0043a1b0;
+  position: absolute;
+  top: 16vh;
+  left: 50%;
+  transform: translateX(-50%);
+  direction: rtl;
+}
+
+.center {
+  position: absolute;
+  top: 30vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flex-box{
+  display: flex;
+  width: 10vw;
+  justify-content: space-between;
+  font-size: 4vh;
+  color: #002f71;
+  font-weight: bold;
+  position: absolute;
+  top: 93vh;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}

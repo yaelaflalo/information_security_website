@@ -1,0 +1,27 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.form-container {
+  position: absolute;
+  text-align: center;
+  width: 35vw;
+  height: 20vh;
+  direction: rtl;
+  top: 45vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title {
+    font-size: 3vh;
+    font-weight: bold;
+    color: #0043a1b0;
+  }
+  
