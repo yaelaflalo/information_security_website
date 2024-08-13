@@ -18,6 +18,8 @@ const ManagePage = () => {
   const [rejectedRequestId, setRejectedRequestId] = useState("");
   const [typeOfStatus, setTypeOfStatus] = useState("ממתין לאישור...");
   const { userName } = useContext(UserContext);
+  const [selectedSortByDate, setSelectedSortByDate] =
+    useState("createdAt:desc");
 
   const nextButtonHandler = () => {
     setSkip((prevSkip) => prevSkip + limit);
@@ -33,6 +35,10 @@ const ManagePage = () => {
 
   const handleRejectRequest = (requestId) => {
     setRejectedRequestId(requestId);
+  };
+
+  const handleDateChange = (selectedOption) => {
+    setSelectedSortByDate(selectedOption.value);
   };
 
   const changeToHistory = () => {
@@ -59,16 +65,19 @@ const ManagePage = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const sortBy = "";
-
-        const data = await getAllRequests(typeOfStatus, sortBy, limit, skip);
+        const data = await getAllRequests(
+          typeOfStatus,
+          selectedSortByDate,
+          limit,
+          skip
+        );
         setUsersRequests(data);
       } catch (error) {
         console.log("fetch failed");
       }
     };
     fetchRequests();
-  }, [skip, refreshRequests, typeOfStatus]);
+  }, [skip, refreshRequests, typeOfStatus, selectedSortByDate]);
 
   return (
     <div>
@@ -88,6 +97,7 @@ const ManagePage = () => {
       <FilterButtons
         onHistoryClick={changeToHistory}
         onWaitingListClick={changeToWaitingList}
+        onDateChange={handleDateChange}
       />
     </div>
   );
