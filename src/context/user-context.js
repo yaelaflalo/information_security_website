@@ -4,6 +4,7 @@ const UserContext = createContext({
   userName: '',
   isAuthenticated: false,
   role: 'guest', 
+  email: '',
   loginHandler: () => {}, 
   logoutHandlerContext: () => {} 
 });
