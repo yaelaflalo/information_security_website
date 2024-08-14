@@ -1,6 +1,6 @@
 import classes from "./ApproveButtons.module.css";
 
-const ApproveButtons = ({onApproveHandler, onRejectHandler}) => {
+const ApproveButtons = ({ onApproveHandler, onRejectHandler }) => {
   return (
     <div className={classes.container}>
       <button className={classes.approve} onClick={onApproveHandler}>
