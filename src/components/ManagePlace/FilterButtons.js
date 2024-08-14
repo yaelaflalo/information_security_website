@@ -38,22 +38,22 @@ const FilterButtons = ({
   return (
     <div className={classes["filter-buttons"]}>
       <DatePicker
-        selected={startDate}
-        onChange={handleStartDateChange}
-        selectsStart
-        startDate={startDate}
-        endDate={endDate}
-        dateFormat="yyyy-MM-dd"
-        className={classes.picker}
-      />
-      <div>:לתאריך</div>
-      <DatePicker
         selected={endDate}
         onChange={handleEndDateChange}
         selectsEnd
         startDate={startDate}
         endDate={endDate}
         minDate={startDate}
+        dateFormat="yyyy-MM-dd"
+        className={classes.picker}
+      />
+      <div>:לתאריך</div>
+      <DatePicker
+        selected={startDate}
+        onChange={handleStartDateChange}
+        selectsStart
+        startDate={startDate}
+        endDate={endDate}
         dateFormat="yyyy-MM-dd"
         className={classes.picker}
       />
