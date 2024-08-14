@@ -17,7 +17,7 @@ const ManagePage = () => {
     rejectedRequestId: "",
     typeOfStatus: "ממתין לאישור...",
     selectedSortByDate: "createdAt:desc",
-    startDate: new Date("2022-12-31"),
+    startDate: new Date("2022-1-1"),
     endDate: new Date(),
   });
 
