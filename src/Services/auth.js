@@ -59,7 +59,6 @@ export const changeName = async (email, name) => {
   }
 };
 
-
 export const getMe = async () => {
   try {
     const response = await httpCommon.get("/me");
